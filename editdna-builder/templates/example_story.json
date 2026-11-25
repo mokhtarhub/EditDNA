@@ -1,0 +1,159 @@
+{
+ "style": "style.json",
+ "vo": "vo.wav",
+ "words": "words.json",
+ "format": "16:9",
+ "fps": 60,
+ "intro_at": null,
+ "elements": [
+  {
+   "type": "logo",
+   "src": "shots/tool_logo.png",
+   "at": "ToolName",
+   "until": "so-0.05",
+   "pos": [
+    0.5,
+    0.38
+   ],
+   "h": 190
+  },
+  {
+   "type": "kinetic",
+   "from": "w:0",
+   "to": "w:6",
+   "pos": [
+    0.5,
+    0.72
+   ],
+   "size": 110,
+   "hl": [
+    "free"
+   ]
+  },
+  {
+   "type": "headline",
+   "text": "no editing",
+   "at": "editing",
+   "until": "Here's-0.05",
+   "pos": [
+    0.5,
+    0.45
+   ],
+   "size": 130
+  },
+  {
+   "type": "screenshot",
+   "id": "s1",
+   "src": "shots/app.png",
+   "at": "open",
+   "until": "then-0.05",
+   "pos": [
+    0.55,
+    0.52
+   ],
+   "width": 0.6,
+   "label": "the app"
+  },
+  {
+   "type": "callout",
+   "on": "s1",
+   "box": [
+    0.72,
+    0.8,
+    0.95,
+    0.9
+   ],
+   "at": "button",
+   "until": "then-0.05",
+   "label": "click here"
+  },
+  {
+   "type": "stat",
+   "fmt": "${:.0f}",
+   "from": 0,
+   "to": 10,
+   "label": "per 1,000 views",
+   "at": "dollars",
+   "until": "and@3-0.05",
+   "pos": [
+    0.5,
+    0.42
+   ]
+  },
+  {
+   "type": "checklist",
+   "items": [
+    [
+     "Download it",
+     "download"
+    ],
+    [
+     "Paste one line",
+     "paste"
+    ],
+    [
+     "Render",
+     "render"
+    ]
+   ],
+   "title": "3 steps",
+   "pos": [
+    0.6,
+    0.55
+   ],
+   "until": "done+0.5"
+  },
+  {
+   "type": "bubble",
+   "text": "that was easy.",
+   "at": "done",
+   "until": "done+1.6"
+  }
+ ],
+ "mascot": [
+  {
+   "at": 0.5,
+   "do": "show"
+  },
+  {
+   "at": "free",
+   "do": "hop"
+  },
+  {
+   "at": "dollars",
+   "do": "big"
+  },
+  {
+   "at": "download",
+   "do": "dock"
+  }
+ ],
+ "camera": [
+  {
+   "at": 0,
+   "zoom": 1.05
+  },
+  {
+   "at": "w:7",
+   "zoom": 1.0
+  },
+  {
+   "at": "button",
+   "zoom": 1.3,
+   "x": 0.75,
+   "y": 0.75
+  },
+  {
+   "at": "then",
+   "zoom": 1.0
+  }
+ ],
+ "transitions": [
+  "Here's",
+  "then"
+ ],
+ "shakes": [
+  "dollars"
+ ],
+ "captions": false
+}

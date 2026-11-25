@@ -1,0 +1,44 @@
+EditDNA — START HERE (step by step)
+=====================================
+EditDNA does two things:
+  (1) It asks about your channel, looks at screenshots of editing styles you love, and designs YOUR editing style.
+  (2) It builds a skill named after your channel that edits any video in that style with one sentence.
+
+■ One-time setup
+1) Python: python.org/downloads → install the latest version, tick "Add Python to PATH".
+2) FFmpeg: open Command Prompt and type:   winget install Gyan.FFmpeg      (Mac: brew install ffmpeg)
+3) An agent to run it — pick one:
+   • Free: OpenCode (opencode.ai) — has free models.
+   • Paid: the Claude app (Pro plan) or Claude Code.
+
+■ Install the skill
+• Claude app: Settings → Capabilities → Skills → Upload skill → choose editdna-builder.zip
+• OpenCode / Claude Code: copy the editdna-builder folder into your skills folder
+  (OpenCode: ~/.config/opencode/skills   |   Claude Code: ~/.claude/skills)
+
+■ Build your style
+1) Make a new folder (e.g. D:\MyChannel) and put in it:
+   - your channel logo (PNG, transparent background if you can)
+   - a folder named refs with 2–6 screenshots of videos whose editing you love
+   - (optional) a mascot/character image
+2) Open your agent in that folder and type:
+   Use the editdna-builder skill to build my channel's editing style
+3) Answer its questions (one or two at a time).
+4) It shows you a board with every element + a 6-second demo. Tell it what to change in plain words
+   ("calmer colours", "bolder font", "less shaking") until you love it.
+5) When you approve, it creates a new skill folder named after your channel (<your-channel>-editdna). Install it the same way.
+
+■ Making a video (from now on)
+1) Make a folder for the video with: vo.wav (voice-over) + script.txt (the text you read) + a shots folder with screenshots.
+2) Tell your agent:
+   Use the <your-channel>-editdna skill to edit this video
+3) You get preview.mp4 first (fast, for review) and then final.mp4 in 1080p 60fps.
+   For shorts say: "make it a 9:16 short with captions".
+
+■ Common problems
+• "python is not recognized" → reinstall Python with "Add to PATH" ticked, open a new Command Prompt.
+• "ffmpeg is not recognized" → close and reopen Command Prompt after installing FFmpeg.
+• The first transcription is slow because it downloads the speech model once.
+
+■ License
+Free for personal use only. Do not sell or redistribute. See LICENSE.
