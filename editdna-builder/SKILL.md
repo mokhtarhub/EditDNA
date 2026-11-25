@@ -1,6 +1,6 @@
 ---
 name: editdna-builder
-description: Builds a person's own motion-graphics editing skill for their YouTube/TikTok channel. Interviews them (channel, language, content, colours, logo, reference screenshots), designs a matching editing style, shows a preview, then generates a ready-to-use "<channel>-editdna" skill that edits their videos in that style.
+description: Builds a person's own motion-graphics editing skill for their YouTube/TikTok channel. Interviews them (channel, language, content, colours, logo, reference screenshots), designs a matching editing style, shows a preview, then generates a ready-to-use CHANNEL-editdna skill that edits their videos in that style.
 ---
 
 # EditDNA Builder
@@ -84,8 +84,8 @@ Show them `style_board.jpg` (every element at once) and `style_demo.mp4` (motion
 ```
 python make_channel.py my-style <folder where they keep skills>
 ```
-This creates `<channel>-editdna/` (SKILL.md, style.json, fonts, assets, engine, example). Tell them, in their language:
-- where it is, and how to add it to their agent (Claude: Settings → Capabilities → Skills → upload the folder as a .zip; OpenCode / Claude Code: copy the folder into the skills folder),
+This creates `<channel>-editdna/` (SKILL.md, style.json, fonts, assets, engine, example) and `<channel>-editdna.zip` next to it. Tell them, in their language:
+- where it is, and how to add it to their agent (Claude app: Settings → Capabilities → Skills → upload `<channel>-editdna.zip`; OpenCode / Claude Code: copy the folder into the skills folder),
 - the one sentence they will use from now on: **"Use the <channel>-editdna skill to edit this video: voice-over <file>, script <file>, screenshots in <folder>."**
 
 ## Ownership

@@ -18,8 +18,8 @@ def main(src, parent):
     shutil.copytree(src, dst, ignore=shutil.ignore_patterns('preview*', '*.mp4', '*_parts'))
     shutil.copytree(os.path.join(HERE, 'editdna'), os.path.join(dst, 'editdna'), ignore=shutil.ignore_patterns('__pycache__'))
     shutil.copy(os.path.join(HERE, 'run.py'), dst); shutil.copy(os.path.join(HERE, 'requirements.txt'), dst)
-    lic = os.path.join(os.path.dirname(HERE), 'LICENSE')
-    if os.path.exists(lic): shutil.copy(lic, dst)
+    for lic in (os.path.join(HERE, 'LICENSE'), os.path.join(os.path.dirname(HERE), 'LICENSE')):
+        if os.path.exists(lic): shutil.copy(lic, dst); break
     os.makedirs(os.path.join(dst, 'examples'), exist_ok=True)
     shutil.copy(os.path.join(HERE, 'templates', 'example_story.json'), os.path.join(dst, 'examples', 'example_story.json'))
     t = open(os.path.join(HERE, 'templates', 'channel_SKILL.md'), encoding='utf-8').read()
@@ -27,9 +27,11 @@ def main(src, parent):
     rep = {'{{NAME}}': name, '{{SLUG}}': sl, '{{LANG}}': ch.get('language', 'en'), '{{DIR}}': ch.get('direction', 'ltr'),
            '{{CONTENT}}': ch.get('content', ''), '{{AUDIENCE}}': ch.get('audience', ''), '{{TAGLINE}}': ch.get('tagline', ''),
            '{{ENERGY}}': st.get('motion', {}).get('energy', 'medium'), '{{MASCOT}}': 'yes' if st.get('mascot', {}).get('image') else 'no'}
-    for k, v in rep.items(): t = t.replace(k, str(v))
+    for k, v in rep.items(): t = t.replace(k, re.sub(r'[<>"]', '', str(v)))  # skill descriptions may not hold XML tags
     open(os.path.join(dst, 'SKILL.md'), 'w', encoding='utf-8').write(t)
-    print(dst)
+    # ready-to-upload zip for the Claude app (Settings -> Capabilities -> Skills -> Upload)
+    zp = shutil.make_archive(dst, 'zip', parent, sl)
+    print(dst); print(zp)
 
 
 if __name__ == '__main__': main(sys.argv[1], sys.argv[2])
