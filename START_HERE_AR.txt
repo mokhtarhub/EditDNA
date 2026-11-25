@@ -13,7 +13,7 @@ EditDNA — ابدأ من هنا (شرح خطوة بخطوة)
    • مدفوع: تطبيق Claude (اشتراك Pro) أو Claude Code.
 
 ■ تسطيب السكيل
-• تطبيق Claude: Settings ← Capabilities ← Skills ← Upload skill ← اختار ملف EditDNA-builder-v1.0.zip (من صفحة Releases)
+• تطبيق Claude: Settings ← Capabilities ← Skills ← Upload skill ← اختار ملف EditDNA-builder-v1.0.zip (موجود جوه الفولدر ده)
 • OpenCode أو Claude Code: انسخ فولدر editdna-builder جوه فولدر السكيلز
   (OpenCode: ‎~/.config/opencode/skills   |   Claude Code: ‎~/.claude/skills)
 

@@ -11,7 +11,7 @@ preview, and then builds a second skill — `<your-channel>-editdna` — that ed
 
 ## Quick start
 1. Open the [latest release](https://github.com/mokhtarhub/EditDNA/releases/latest), download **Source code (zip)** and unzip it.
-   Claude app users: upload **EditDNA-builder-v1.0.zip** from the same page as a skill.
+   Claude app users: upload **EditDNA-builder-v1.0.zip** (it's inside the downloaded folder) as a skill.
 2. Give your agent the `editdna-builder` folder as a skill, then say:
    **"Use the editdna-builder skill to build my channel's editing style."**
 3. Answer its questions, send your screenshots and logo, approve the preview.
