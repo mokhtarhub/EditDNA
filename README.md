@@ -10,7 +10,8 @@ preview, and then builds a second skill — `<your-channel>-editdna` — that ed
 - An AI agent that can run commands: Claude app (paid) · Claude Code · OpenCode (free models available)
 
 ## Quick start
-1. Download this repository (Code → Download ZIP) and unzip it.
+1. Download **EditDNA.zip** from [Releases](https://github.com/mokhtarhub/EditDNA/releases/latest) and unzip it (or Code → Download ZIP).
+   Claude app users: upload **editdna-builder.zip** from the same page as a skill.
 2. Give your agent the `editdna-builder` folder as a skill, then say:
    **"Use the editdna-builder skill to build my channel's editing style."**
 3. Answer its questions, send your screenshots and logo, approve the preview.
