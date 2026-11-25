@@ -10,8 +10,8 @@ EditDNA سكيل للإيجنتس (Claude، وClaude Code، وOpenCode). بتس�
 - إيجنت بيقدر يشغّل أوامر: تطبيق Claude (مدفوع) · Claude Code · OpenCode (فيه موديلات مجانية)
 
 ## البداية
-1. نزّل **EditDNA.zip** من صفحة [Releases](https://github.com/mokhtarhub/EditDNA/releases/latest) وفك الضغط (أو Code ← Download ZIP).
-   لو بتستخدم تطبيق Claude: ارفع **editdna-builder.zip** من نفس الصفحة كسكيل.
+1. افتح [آخر نسخة](https://github.com/mokhtarhub/EditDNA/releases/latest)، ونزّل **Source code (zip)** وفك الضغط.
+   لو بتستخدم تطبيق Claude: ارفع **EditDNA-builder-v1.0.zip** من نفس الصفحة كسكيل.
 2. ادّي الإيجنت فولدر `editdna-builder` كسكيل وقوله:
    **«استخدم سكيل editdna-builder وابنيلي ستايل المونتاج بتاع قناتي»**
 3. جاوب على أسئلته، وابعتله السكرينات واللوجو، ووافق على التجربة.
