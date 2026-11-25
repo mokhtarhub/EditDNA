@@ -12,7 +12,7 @@ EditDNA does two things:
    • Paid: the Claude app (Pro plan) or Claude Code.
 
 ■ Install the skill
-• Claude app: Settings → Capabilities → Skills → Upload skill → choose EditDNA-builder-v1.0.zip (it's inside this folder)
+• Claude app: in the left sidebar (above your chats) open Plugins → Add → Upload plugin → choose EditDNA-builder-v1.0.zip (it's inside this folder)
 • OpenCode / Claude Code: copy the editdna-builder folder into your skills folder
   (OpenCode: ~/.config/opencode/skills   |   Claude Code: ~/.claude/skills)
 

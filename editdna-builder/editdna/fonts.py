@@ -35,8 +35,26 @@ CATALOG = {   # name: (path in repo, vibe, scripts)
 }
 
 
-def get(name, dest):
+def get(name, dest, weight=None):
+    """Download a font. Variable fonts (file name has [wght]) open at their thinnest default (usually Regular),
+    so they are turned into a static file at `weight` (100-1000; default 700 = Bold) -> e.g. Cairo-900.ttf."""
     rel = CATALOG[name][0]; os.makedirs(dest, exist_ok=True); fn = os.path.basename(rel)
     out = os.path.join(dest, fn)
-    if not os.path.exists(out): urllib.request.urlretrieve(BASE + urllib.request.quote(rel), out)
-    return fn
+    if '[' not in fn:
+        if not os.path.exists(out): urllib.request.urlretrieve(BASE + urllib.request.quote(rel), out)
+        return fn
+    w = int(weight or 700)
+    static = fn.split('[')[0] + f'-{w}.ttf'; sout = os.path.join(dest, static)
+    if os.path.exists(sout): return static
+    tmp = os.path.join(dest, '_var_' + fn)
+    urllib.request.urlretrieve(BASE + urllib.request.quote(rel), tmp)
+    try:
+        from fontTools.ttLib import TTFont
+        from fontTools.varLib.instancer import instantiateVariableFont
+        f = TTFont(tmp); axes = {a.axisTag: a for a in f['fvar'].axes}
+        loc = {t: a.defaultValue for t, a in axes.items()}
+        if 'wght' in axes: loc['wght'] = max(axes['wght'].minValue, min(axes['wght'].maxValue, w))
+        instantiateVariableFont(f, loc).save(sout); os.remove(tmp); return static
+    except ImportError:
+        print('fonttools missing (pip install fonttools) - kept the variable font, it will render at Regular weight')
+        os.replace(tmp, out); return fn

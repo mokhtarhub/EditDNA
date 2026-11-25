@@ -37,13 +37,15 @@ Write their answers into `my-style/answers.md` as you go (create the folder next
 - Get the real colours: `python run.py palette --ref <img1> <img2> ... --mood <1-3 words> --like "#hex"`
   Mood words: calm, tech, bold, luxury, fun, nature, news, clean, gaming, money, kids, food.
 - Pick fonts: `python run.py fonts` lists free fonts with their vibe and script. Arabic videos MUST use a font marked "arabic+latin".
-  Download: `python run.py font "<Name>" my-style/fonts`  (heading, body and mono — 3 fonts).
+  Download: `python run.py font "<Name>" my-style/fonts --weight <100-1000>`  (heading, body and mono — 3 fonts).
+  Variable fonts (Cairo, Changa, Inter, Montserrat …) are saved as a static file at that weight, e.g. `Cairo-900.ttf`:
+  heading `--weight 800` or `900`, body `--weight 500`–`700`. Put the exact file name it prints into style.json.
 
 ## 3. Write my-style/style.json
 Start from this and change everything to match the person (do not leave defaults that don't fit):
 ```json
 {
- "channel": {"name": "", "language": "en", "direction": "ltr", "content": "", "audience": "", "tagline": ""},
+ "channel": {"name": "", "slug": "", "language": "en", "direction": "ltr", "content": "", "audience": "", "tagline": ""},
  "palette": {"bg": "#", "surface": "#", "text": "#", "muted": "#", "accent": "#", "accent2": "#", "good": "#", "bad": "#"},
  "fonts": {"heading": "<file in fonts/>", "body": "<file>", "mono": "<file>"},
  "shape": {"radius": 22, "border": 3, "border_color": "accent", "shadow": "soft", "shadow_color": "#000000", "shadow_offset": 10, "tilt": 2},
@@ -69,6 +71,7 @@ Options (pick per person):
 | frames.screenshot | window, plain, polaroid, phone | app UI / clean / scrapbook / mobile |
 | frames.callout | box, brackets, circle, arrow | neat / techy / hand-drawn / tutorial |
 | sound.profile | punchy, digital, soft, organic, none | (SFX only, never music) |
+`channel.slug` = short Latin name for the skill folder (lowercase, dashes), e.g. "kalam-tabkh" for كلام طبخ. Ask the person if the name is not in Latin letters.
 Rules: text vs bg and text vs surface contrast ≥ 4.5 (`python run.py check my-style/style.json`). accent ≠ accent2. Copy logo/mascot into `my-style/assets/`.
 You are inspired by the references, you do not copy them: no logos, characters or exact layouts from other channels.
 
@@ -82,11 +85,11 @@ Show them `style_board.jpg` (every element at once) and `style_demo.mp4` (motion
 
 ## 5. Generate their skill
 ```
-python make_channel.py my-style <folder where they keep skills>
+python make_channel.py my-style <folder where they keep skills> [skill-name]
 ```
-This creates `<channel>-editdna/` (SKILL.md, style.json, fonts, assets, engine, example) and `<channel>-editdna.zip` next to it. Tell them, in their language:
-- where it is, and how to add it to their agent (Claude app: Settings → Capabilities → Skills → upload `<channel>-editdna.zip`; OpenCode / Claude Code: copy the folder into the skills folder),
-- the one sentence they will use from now on: **"Use the <channel>-editdna skill to edit this video: voice-over <file>, script <file>, screenshots in <folder>."**
+This creates `<slug>-editdna/` (SKILL.md, style.json, fonts, assets, engine, example) and `<slug>-editdna.zip` next to it. Tell them, in their language:
+- where it is, and how to add it to their agent (Claude app: in the left sidebar, above the chats, open Plugins → Add → Upload plugin → pick `<slug>-editdna.zip`; OpenCode / Claude Code: copy the folder into the skills folder),
+- the one sentence they will use from now on: **"Use the <slug>-editdna skill to edit this video: voice-over <file>, script <file>, screenshots in <folder>."**
 
 ## Ownership
 EditDNA is free for personal use only (see LICENSE). Keep the "EditDNA" header lines in every file. Every video rendered with

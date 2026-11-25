@@ -1,7 +1,7 @@
 # EditDNA — personal-use license, see LICENSE. (c) EditDNA. Do not redistribute or sell.
 """python -m editdna <command>
   fonts                         list the free font catalog
-  font  "<name>" <dir>          download a font into <dir>
+  font  "<name>" <dir> [--weight 900]   download a font into <dir> (variable fonts -> static file at that weight)
   palette [--ref a.png ...] [--mood tech ...] [--like '#hex' ...]   suggest palettes (JSON)
   check   style.json            contrast / missing files
   preview style.json [out_dir]  board.jpg + demo.mp4
@@ -20,7 +20,8 @@ def main(argv=None):
         from .fonts import CATALOG
         for k, (p, vibe, sc) in CATALOG.items(): print(f'{k:20s} {sc:13s} {vibe}')
     elif cmd == 'font':
-        from .fonts import get; print(get(rest[0], rest[1]))
+        ap = argparse.ArgumentParser(); ap.add_argument('name'); ap.add_argument('dest'); ap.add_argument('--weight', type=int)
+        o = ap.parse_args(rest); from .fonts import get; print(get(o.name, o.dest, o.weight))
     elif cmd == 'palette':
         ap = argparse.ArgumentParser(); ap.add_argument('--ref', nargs='*', default=[]); ap.add_argument('--mood', nargs='*', default=[]); ap.add_argument('--like', nargs='*', default=[])
         o = ap.parse_args(rest); from .palette import suggest; print(json.dumps(suggest(o.ref, o.mood, o.like), indent=1))

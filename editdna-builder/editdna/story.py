@@ -95,6 +95,7 @@ class Story:
             else: raise ValueError('unknown element type ' + ty)
             self.items.append(c); self.ev += c.sfx
             if e.get('sfx'): self.ev.append((at, e['sfx']))
+        self.caps = []                      # captions are drawn after the camera so a zoom never pushes them off screen
         if self.s.get('captions'):
             cy = st['captions']['y']; mx = st['captions']['max_words']; ch = []
             for w in self.words:
@@ -115,9 +116,9 @@ class Story:
 
     def _cap(self, ch, cy):
         idx = self.st['captions']; t0 = ch[0][1]
-        nxt = [w['t'] for w in self.words if w['t'] > ch[-1][1]]; t1 = (nxt[0] - .1) if nxt else self.dur
+        nxt = [w['t'] for w in self.words if w['t'] > ch[-1][1]]; t1 = (nxt[0] - .2) if nxt else self.dur
         k = C.Kinetic(self.P, ch, (.5, cy), 104 if self.W < self.H else 80, set(), set(), .88, t1); k.sfx = []
-        self.items.append(k)
+        self.caps.append(k)
 
     # ---------- render ----------
     def frame(self, t):
@@ -125,6 +126,8 @@ class Story:
         for c in self.items:
             if c.a <= t < c.b: c.draw(fr, t)
         fr = self.cam.apply(fr, t)
+        for c in self.caps:
+            if c.a <= t < c.b: c.draw(fr, t)
         for c in self.over: c.draw(fr, t)
         return self.fx(fr, t)
 
